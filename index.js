@@ -19,7 +19,6 @@ var baseUrl = "https://v2.jokeapi.dev/joke/"
 app.get('/', (req, res) => {
     res.render("index.ejs", {data: data})
     data = []
-    // getUser()
   })
 
 app.post('/' , async (req, res) => {
@@ -31,16 +30,12 @@ app.post('/' , async (req, res) => {
       var url = baseUrl.concat(params)
     }
     
-    // data = req.body.category.toString()
     try {
         const response = await axios.get(url)
         console.log(url)
-        // console.log(response.data.joke);
         if (response.data.joke) {
           data.push(response.data.joke)
         } else {
-          // console.log(response.data.setup)
-          // console.log(response.data.delivery)
           data.push(response.data.setup)
           data.push(response.data.delivery)
         }
